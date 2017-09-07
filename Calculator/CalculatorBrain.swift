@@ -31,7 +31,7 @@ struct CalculatorBrain {
         "=": Operation.equals,
         "÷": Operation.binaryOperation({ $0 / $1 }),
         "−": Operation.binaryOperation({ $0 - $1 }),
-        "+": Operation.binaryOperation({ $0 + $1 })
+        "+": Operation.binaryOperation({ $0 + $1 }),
         ]
     
     mutating func performOperation(_ symbol: String) {
@@ -70,6 +70,8 @@ struct CalculatorBrain {
             return function(firstOperand, secondOperand)
         }
     }
+    
+   
     
     mutating func setOperand(_ operand: Double) {
         accumulator = operand

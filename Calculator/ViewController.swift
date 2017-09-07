@@ -13,13 +13,27 @@ class ViewController: UIViewController {
     
     var userIsInTheMiddleOfTyping = false
     
+    var periodPressed = false
+    
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
-            display.text = textCurrentlyInDisplay + digit
+            if digit == "." && periodPressed == false {
+                display.text = textCurrentlyInDisplay + digit
+                periodPressed = true
+            } else if digit == "." && periodPressed == true {
+                display.text = textCurrentlyInDisplay
+            } else {
+                display.text = textCurrentlyInDisplay + digit
+            }
         } else {
-            display.text = digit
+            if digit == "." {
+                display.text = "0."
+                periodPressed = true
+            } else {
+                display.text = digit
+            }
             userIsInTheMiddleOfTyping = true
         }
     }
